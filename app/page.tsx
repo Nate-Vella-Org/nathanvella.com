@@ -5,7 +5,7 @@ export default function Home() {
     <main className="flex flex-col sm:flex-row items-start justify-start p-24">
       <Image 
         src="/me.jpg" 
-        alt="Description of Image" 
+        alt="Nate Vella" 
         width={250} 
         height={250} 
       />

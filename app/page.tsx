@@ -16,11 +16,11 @@ export default function Home() {
           <a href="https://www.linkedin.com/in/vellanathan/" target="_blank" rel="noopener noreferrer">
             <Image src="/linkedin-icon.svg" alt="LinkedIn" width={24} height={24} />
           </a>
-          <a href="mailto:natevella@example.com" className="ml-4">
-            <Image src="/email-icon.png" alt="Email" width={24} height={24} />
-          </a>
           <a href="https://github.com/nathanvella" target="_blank" rel="noopener noreferrer" className="ml-4">
             <Image src="/github-icon.svg" alt="GitHub" width={24} height={24} />
+          </a>
+          <a href="mailto:nathangvella@gmail.com" className="ml-4">
+            <Image src="/email-icon.png" alt="Email" width={24} height={24} />
           </a>
         </div>
       </div>

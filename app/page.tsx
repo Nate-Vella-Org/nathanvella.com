@@ -11,8 +11,8 @@ export default function Home() {
       />
       <div className="mt-4 sm:mt-0 sm:ml-4">
         <h1 className="text-4xl font-bold mb-4">Nate Vella</h1>
-        <p className="text-lg">Just trying to build stuff</p>
-        <div className="mt-4 flex justify-start"> {/* Modified line */}
+        <p className="text-lg" style={{ maxWidth: '250px' }}>Just trying to build stuff </p>
+        <div className="mt-4 flex justify-start">
           <a href="https://www.linkedin.com/in/vellanathan/" target="_blank" rel="noopener noreferrer">
             <Image src="/linkedin-icon.svg" alt="LinkedIn" width={24} height={24} />
           </a>

@@ -1,10 +1,12 @@
-import { SocialItem } from "./SocialItem"; 
+import { SocialItem } from "./SocialItem";
+import { Name } from "./Name";
+import { Bio } from "./Bio";
 
 export function ContentSection() {
   return (
     <div className="mt-4 sm:mt-0 sm:ml-4">
-      <h1 className="text-4xl font-bold mb-4">Nate Vella</h1>
-      <p className="text-lg" style={{ maxWidth: '250px' }}>Just trying to build stuff </p>
+      <Name />
+      <Bio />
       <div className="mt-4 flex justify-start">
         <SocialItem
           href="https://www.linkedin.com/in/vellanathan/"

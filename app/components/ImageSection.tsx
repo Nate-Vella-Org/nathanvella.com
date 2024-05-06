@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-// ImageSection component
 export function ImageSection() {
   return (
     <Image

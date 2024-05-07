@@ -1,11 +1,20 @@
-import { ImageSection } from "./components/ImageSection";
-import { ContentSection } from "./components/ContentSection";
+import { Suspense } from "react";
+
+import { Header } from "./components/Header";
+import { Main } from "./components/Main";
+import { Footer } from "./components/Footer";
+
 
 export default function Home() {
   return (
-    <main className="flex flex-col sm:flex-row items-start justify-start p-24">
-      <ImageSection />
-      <ContentSection />
-    </main>
+    <>
+      <Suspense>
+        <Header />
+      </Suspense>
+      <main>
+        <Main />
+      </main>
+      <Footer />
+    </>
   );
 }

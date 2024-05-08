@@ -1,20 +1,16 @@
 import { Suspense } from "react";
-
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
-import { Footer } from "./components/Footer";
-
 
 export default function Home() {
   return (
     <>
-      <Suspense>
-        <Header />
-      </Suspense>
-      <main>
+      <div className="flex flex-col md:flex-row">
+        <Suspense>
+          <Header />
+        </Suspense>
         <Main />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

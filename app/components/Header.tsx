@@ -41,7 +41,7 @@ export function Header() {
                     />
                 </div>
             </div>
-            <hr className="w-full m-4 border-gray-300 border-solid md:hidden" />
+            <hr className="m-4 border-solid md:hidden" />
         </div>
     );
 }

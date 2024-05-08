@@ -9,7 +9,7 @@ export default function Home() {
         <Suspense>
           <Header />
         </Suspense>
-        <Main />
+        {/* <Main /> */}
       </div>
     </>
   );

@@ -18,7 +18,7 @@ export function Header() {
                 <a href="/projects" className="text-sm">Projects</a>
                 <a href="/contact" className="text-sm">Contact</a>
             </div> */}
-            <div className="fixed bottom-0 p-4">
+            <div className="pl-4">
                 <div className="flex justify-start">
                     <SocialItem
                         href="https://www.linkedin.com/in/vellanathan/"

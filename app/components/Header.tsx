@@ -4,7 +4,7 @@ import { MapPinIcon } from "@heroicons/react/16/solid";
 
 export function Header() {
     return (
-        <div className="container h-screen max-w-xs flex flex-col">
+        <div className="container max-w-xs flex flex-col">
             <div className="p-4">
                 <Image src="/me.jpg" alt="Nate Vella" width={250} height={250} />
             </div>

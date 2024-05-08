@@ -14,7 +14,7 @@ export function Main() {
     ];
 
   return (
-    <div className="container flex flex-wrap p-4">
+    <div className="container flex flex-wrap">
       {companies.map((company, index) => (
         <Card key={index} name={company.name} description={company.description} />
       ))}

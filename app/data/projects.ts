@@ -2,9 +2,10 @@ export type Project = {
   slug: string;
   name: string;
   description: string;
-  href: string;
   status: "Live" | "Building" | "Planned";
   tags: string[];
+  githubUrl: string;
+  liveUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -13,8 +14,9 @@ export const projects: Project[] = [
     name: "Daily Digest",
     description:
       "Central log of Walter's daily brain/codebase updates for traceability, review, and historical context.",
-    href: "https://github.com/Nate-Vella-Org/daily-digest",
     status: "Building",
     tags: ["Traceability", "Ops", "Vercel"],
+    githubUrl: "https://github.com/Nate-Vella-Org/daily-digest",
+    liveUrl: "https://daily-digest.natevella.com",
   },
 ];

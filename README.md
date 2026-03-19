@@ -1,37 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nathanvella.com
 
-## Getting Started
+Personal home base deployed on Vercel.
 
-First, run the development server:
+## What this repo does
+- Renders a project-card homepage.
+- Keeps project metadata in a single data file for easy updates.
+- Hosts the first project: **Daily Digest**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project architecture
+- `app/data/projects.ts` → source of truth for homepage cards
+- `app/components/ProjectCard.tsx` → reusable card UI
+- `app/components/Main.tsx` → renders all project cards
+- `app/digests/page.tsx` → digest viewer page
+- `app/api/daily-digest/route.ts` → API to read/write digest entries
+- `lib/digests.ts` → digest store helpers
+
+## Daily Digest store (Vercel-managed KV)
+This project stores daily digests in KV and exposes:
+
+- `GET /api/daily-digest?limit=30`
+- `POST /api/daily-digest` with header `x-api-key: <DIGEST_API_KEY>`
+
+POST body:
+
+```json
+{
+  "date": "2026-03-19",
+  "summary": "Daily Brain Digest ..."
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Required environment variables
+- `KV_REST_API_URL`
+- `KV_REST_API_TOKEN`
+- `DIGEST_API_KEY`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> In Vercel, add KV/Redis integration and set the env vars in Project Settings.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Local development
 
-## Learn More
+```bash
+npm install --legacy-peer-deps
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
+## Add a new project card
+Edit `app/data/projects.ts` and add a new project object.

@@ -23,10 +23,12 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="rounded-full border border-emerald-300 bg-white px-3 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-50 dark:border-emerald-700 dark:bg-zinc-900 dark:text-emerald-300 dark:hover:bg-zinc-800"
+      className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-white px-3 py-1 text-xs font-medium text-brand-700 hover:bg-brand-50 dark:border-brand-800 dark:bg-zinc-900 dark:text-brand-300 dark:hover:bg-zinc-800"
       aria-label="Toggle theme"
+      title="Toggle theme"
     >
-      {dark ? "Dark" : "Light"}
+      <span aria-hidden="true">{dark ? "🌙" : "☀️"}</span>
+      <span>{dark ? "Dark" : "Light"}</span>
     </button>
   );
 }

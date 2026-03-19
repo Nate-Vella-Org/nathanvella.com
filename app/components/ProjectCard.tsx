@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Project } from "../data/projects";
+import type { Project, ProjectStatus } from "../data/projects";
 
 type ProjectCardProps = {
   project: Project;
@@ -13,61 +13,83 @@ function GithubIcon() {
   );
 }
 
-function ExternalIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-      <path d="M14 3h7v7" />
-      <path d="M10 14 21 3" />
-      <path d="M21 14v7h-7" />
-      <path d="M3 10V3h7" />
-      <path d="M3 21h7v-7" />
-      <path d="M3 3 14 14" />
-    </svg>
-  );
+function statusStyles(status: ProjectStatus) {
+  if (status === "Live") {
+    return {
+      dot: "bg-brand-500",
+      chip: "border-brand-300 text-brand-800 dark:border-brand-700 dark:text-brand-300",
+    };
+  }
+  if (status === "Building") {
+    return {
+      dot: "bg-amber-500",
+      chip: "border-amber-300 text-amber-800 dark:border-amber-700 dark:text-amber-300",
+    };
+  }
+  return {
+    dot: "bg-zinc-400",
+    chip: "border-zinc-300 text-zinc-700 dark:border-zinc-700 dark:text-zinc-300",
+  };
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const styles = statusStyles(project.status);
+
   return (
-    <article className="rounded-xl border border-emerald-200 bg-white p-5 shadow-sm dark:border-emerald-900 dark:bg-zinc-900">
+    <article className="rounded-xl border border-brand-200 bg-white p-5 shadow-sm dark:border-brand-900 dark:bg-zinc-900">
       <div className="flex items-start justify-between gap-3">
         <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">{project.name}</h2>
-        <span className="rounded-full border border-emerald-300 px-2 py-1 text-xs text-emerald-800 dark:border-emerald-700 dark:text-emerald-300">
+        <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-1 text-xs ${styles.chip}`}>
+          <span className={`h-2 w-2 rounded-full ${styles.dot}`} aria-hidden="true" />
           {project.status}
         </span>
       </div>
 
-      <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{project.description}</p>
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-600 dark:text-zinc-400">
+        <span>Category: {project.category}</span>
+        <span>•</span>
+        <span>Updated: {project.lastUpdated}</span>
+      </div>
+
+      <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-300">{project.description}</p>
 
       <div className="mt-3 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <span key={tag} className="rounded bg-emerald-100 px-2 py-1 text-xs text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
+          <span
+            key={tag}
+            className="rounded bg-brand-100 px-2 py-1 text-xs text-brand-900 dark:bg-brand-950 dark:text-brand-300"
+          >
             {tag}
           </span>
         ))}
       </div>
 
       <div className="mt-4 flex items-center gap-3">
+        {project.liveUrl ? (
+          <Link
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="rounded-md bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700"
+          >
+            Visit Live Site
+          </Link>
+        ) : (
+          <span className="rounded-md bg-zinc-200 px-3 py-1.5 text-sm text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+            Live site coming soon
+          </span>
+        )}
+
         <Link
           href={project.githubUrl}
           target="_blank"
           rel="noreferrer noopener"
-          className="inline-flex items-center text-zinc-700 hover:text-emerald-700 dark:text-zinc-300 dark:hover:text-emerald-300"
+          className="inline-flex items-center text-zinc-700 hover:text-brand-700 dark:text-zinc-300 dark:hover:text-brand-300"
           aria-label={`${project.name} GitHub repository`}
           title="GitHub repo"
         >
           <GithubIcon />
         </Link>
-
-        {project.liveUrl && (
-          <Link
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-1 text-sm font-medium text-zinc-800 hover:text-emerald-700 dark:text-zinc-100 dark:hover:text-emerald-300"
-          >
-            Live Site <ExternalIcon />
-          </Link>
-        )}
       </div>
     </article>
   );

@@ -9,7 +9,7 @@ type SocialItemProps = {
 export function SocialItem({ href, icon, text }: SocialItemProps) {
   return (
     <a
-      className="flex items-center gap-2 text-sm text-zinc-700 hover:text-emerald-700 dark:text-zinc-300 dark:hover:text-emerald-300"
+      className="flex items-center gap-2 text-sm text-zinc-700 hover:text-brand-700 dark:text-zinc-300 dark:hover:text-brand-300"
       href={href}
       target="_blank"
       rel="noopener noreferrer"

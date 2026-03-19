@@ -13,8 +13,8 @@ export const projects: Project[] = [
     name: "Daily Digest",
     description:
       "Central log of Walter's daily brain/codebase updates for traceability, review, and historical context.",
-    href: "/digests",
-    status: "Live",
-    tags: ["Traceability", "Ops", "Vercel KV"],
+    href: "https://github.com/Nate-Vella-Org/daily-digest",
+    status: "Building",
+    tags: ["Traceability", "Ops", "Vercel"],
   },
 ];

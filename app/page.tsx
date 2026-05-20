@@ -1,10 +1,26 @@
-import { Suspense } from "react";
-import { Header } from "./components/Header";
-import { Main } from "./components/Main";
+import Image from "next/image";
+
+const links = [
+  {
+    href: "https://www.linkedin.com/in/vellanathan/",
+    label: "LinkedIn",
+    detail: "/vellanathan",
+  },
+  {
+    href: "https://github.com/nathanvella",
+    label: "GitHub",
+    detail: "/nathanvella",
+  },
+  {
+    href: "mailto:nathangvella@gmail.com",
+    label: "Email",
+    detail: "nathangvella@gmail.com",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900">
+    <main className="min-h-screen bg-zinc-50 px-6 py-12 text-zinc-950">
       <a
         href="#main-content"
         className="sr-only absolute left-2 top-2 rounded bg-white px-3 py-1 text-sm text-zinc-900 focus:not-sr-only"
@@ -12,28 +28,37 @@ export default function Home() {
         Skip to main content
       </a>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-[300px_1fr]">
-          <aside className="rounded-2xl bg-white shadow-sm ring-1 ring-brand-200 dark:bg-zinc-900 dark:ring-brand-900">
-            <Suspense>
-              <Header />
-            </Suspense>
-          </aside>
+      <section
+        id="main-content"
+        className="mx-auto flex min-h-[calc(100vh-6rem)] w-full max-w-sm flex-col items-center justify-center text-center"
+      >
+        <Image
+          src="/me.jpg"
+          alt="Nate Vella"
+          width={180}
+          height={180}
+          priority
+          className="h-44 w-44 rounded-full object-cover ring-1 ring-zinc-200"
+        />
 
-          <main
-            id="main-content"
-            className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-brand-200 md:p-6 dark:bg-zinc-900 dark:ring-brand-900"
-          >
-            <div className="mb-4">
-              <h1 className="text-2xl font-bold text-zinc-900 md:text-3xl dark:text-zinc-100">Projects</h1>
-              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">
-                Everything we build together gets indexed here.
-              </p>
-            </div>
-            <Main />
-          </main>
+        <h1 className="mt-8 text-4xl font-semibold tracking-normal">Nate Vella</h1>
+        <p className="mt-2 text-base text-zinc-600">Denver, CO</p>
+
+        <div className="mt-8 flex w-full flex-col gap-3">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+              className="flex items-center justify-between rounded border border-zinc-200 bg-white px-4 py-3 text-left text-sm transition hover:border-zinc-300 hover:bg-zinc-100"
+            >
+              <span className="font-medium">{link.label}</span>
+              <span className="text-zinc-500">{link.detail}</span>
+            </a>
+          ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

@@ -10,6 +10,7 @@ export function ThemeToggle() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = stored ? stored === "dark" : prefersDark;
     document.documentElement.classList.toggle("dark", isDark);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDark(isDark);
   }, []);
 

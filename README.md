@@ -1,4 +1,4 @@
-# nathanvella.com
+# natevella.com
 
 Personal home base deployed on Vercel.
 

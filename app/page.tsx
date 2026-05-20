@@ -4,17 +4,17 @@ const links = [
   {
     href: "https://www.linkedin.com/in/vellanathan/",
     label: "LinkedIn",
-    detail: "/vellanathan",
+    icon: "/linkedin-icon.svg",
   },
   {
     href: "https://github.com/nathanvella",
     label: "GitHub",
-    detail: "/nathanvella",
+    icon: "/github-icon.svg",
   },
   {
     href: "mailto:nathangvella@gmail.com",
     label: "Email",
-    detail: "nathangvella@gmail.com",
+    icon: "/email-icon.png",
   },
 ];
 
@@ -42,19 +42,20 @@ export default function Home() {
         />
 
         <h1 className="mt-8 text-4xl font-semibold tracking-normal">Nate Vella</h1>
-        <p className="mt-2 text-base text-zinc-600">Denver, CO</p>
+        <p className="mt-2 text-base text-zinc-600">Denver Metro Area</p>
 
-        <div className="mt-8 flex w-full flex-col gap-3">
+        <div className="mt-6 flex items-center justify-center gap-4">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target={link.href.startsWith("mailto:") ? undefined : "_blank"}
               rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="flex items-center justify-between rounded border border-zinc-200 bg-white px-4 py-3 text-left text-sm transition hover:border-zinc-300 hover:bg-zinc-100"
+              aria-label={link.label}
+              title={link.label}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 bg-white transition hover:border-zinc-300 hover:bg-zinc-100"
             >
-              <span className="font-medium">{link.label}</span>
-              <span className="text-zinc-500">{link.detail}</span>
+              <Image src={link.icon} alt="" width={22} height={22} className="h-5 w-5 object-contain" />
             </a>
           ))}
         </div>

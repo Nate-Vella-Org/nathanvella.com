@@ -3,44 +3,27 @@
 Personal home base deployed on Vercel.
 
 ## What this repo does
-- Renders a project-card homepage.
-- Keeps project metadata in a single data file for easy updates.
-- Hosts the first project: **Daily Digest**.
+- Renders Nate Vella's personal landing page.
+- Links to public profile/contact destinations.
+- Includes a `/projects` page backed by static project metadata.
 
 ## Project architecture
-- `app/data/projects.ts` → source of truth for homepage cards
-- `app/components/ProjectCard.tsx` → reusable card UI
-- `app/components/Main.tsx` → renders all project cards
-- `app/digests/page.tsx` → digest viewer page
-- `app/api/daily-digest/route.ts` → API to read/write digest entries
-- `lib/digests.ts` → digest store helpers
+- `app/page.tsx` -> primary landing page
+- `app/projects/page.tsx` -> projects page
+- `app/data/projects.ts` -> source of truth for project cards
+- `app/components/ProjectCard.tsx` -> reusable card UI
+- `app/components/Main.tsx` -> renders project cards
+- `next.config.mjs` -> security headers
 
-## Daily Digest store (Vercel-managed KV)
-This project stores daily digests in KV and exposes:
-
-- `GET /api/daily-digest?limit=30`
-- `POST /api/daily-digest` with header `x-api-key: <DIGEST_API_KEY>`
-
-POST body:
-
-```json
-{
-  "date": "2026-03-19",
-  "summary": "Daily Brain Digest ..."
-}
-```
-
-### Required environment variables
-- `KV_REST_API_URL`
-- `KV_REST_API_TOKEN`
-- `DIGEST_API_KEY`
-
-> In Vercel, add KV/Redis integration and set the env vars in Project Settings.
+## Security posture
+- The current app is static and does not require environment variables.
+- Browser hardening headers are configured in `next.config.mjs`.
+- CI runs production dependency audit, lint, and production build checks.
 
 ## Local development
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run dev
 ```
 
